@@ -10,8 +10,8 @@ class UserTest < ActiveSupport::TestCase
   test "should ensure specified name error message" do
     user = User.new
     assert_not user.save
-    user.valid?
-    assert_equal user.errors.messages[:name], ["Name can not be empty. Please enter your name"]
+    assert user.invalid?
+    assert_equal ["Name can not be empty. Please enter your name"], user.errors.messages[:name]
   end
 
   test "should not save user without email" do
